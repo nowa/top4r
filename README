@@ -1,0 +1,19 @@
+= TOP4R
+ 
+* http://top4r.labs.nowa.me
+ 
+== DESCRIPTION:
+ 
+TOP4R封装了淘宝开发平台的接口，帮助你快速构建基于TOP的应用程序。
+ 
+== FEATURES/PROBLEMS:
+ 
+* 自动签名
+ 
+== REQUIREMENTS:
+ 
+* rubygems
+ 
+== INSTALL:
+ 
+sudo gem install nowa-top4r -s http://gems.github.com

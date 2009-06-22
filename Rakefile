@@ -1,0 +1,3 @@
+$:.unshift('lib')
+
+require 'rubygems'
