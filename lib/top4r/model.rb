@@ -59,6 +59,7 @@ module TOP4R
     
     def self.included(base)
       base.extend         ClassMethods
+      base.send :include, TOP4R::ClassUtilMixin
       base.send :include, InstanceMethods
     end
   end
