@@ -10,7 +10,7 @@ class Top4R::Client
   
   def init
     total_results = 0
-    @@logger = Top4R::Logger.new(@@config.logger)
+    @@logger = Top4R::Logger.new(@@config.logger, @@config.trace)
     if @parameters and @session
       @parameters = Base64.decode64(@parameters).split('&').inject({}) do |hsh, i| kv = i.split('='); hsh[kv[0]] = kv[1]; hsh end
       @login = user(@parameters['visitor_nick'])

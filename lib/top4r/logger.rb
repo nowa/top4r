@@ -1,4 +1,6 @@
 class Top4R::Logger
+  attr_accessor :trace
+  
   class << self
     def set_logger(logger)
       self.new logger
@@ -11,7 +13,12 @@ class Top4R::Logger
     end
   end
   
-  def initialize(logger)
+  def initialize(logger, is_trace = false)
+    @trace = is_trace
     @logger = logger || Nogger.new
+  end
+  
+  def info(log)
+    @logger.info log if @trace
   end
 end
