@@ -1,6 +1,6 @@
 require 'rake/gempackagetask'
 
-meta = TOP4R::Meta.new(ROOT_DIR)
+meta = Top4R::Meta.new(ROOT_DIR)
 namespace :package do
   desc "Create Gem Packages"
   Rake::GemPackageTask.new(meta.gem_spec) do |pkg|

@@ -1,7 +1,7 @@
 <% require('pathname') %>
 spec:
   name: top4r
-  version: <%= TOP4R::Version.to_version %>
+  version: <%= Top4R::Version.to_version %>
   summary: TOP4R is a library that can help you build plugin for TaoBao.com quickly in pure Ruby.
   require_path: lib
   has_rdoc: true

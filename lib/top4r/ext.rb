@@ -1,0 +1,1 @@
+require_local('top4r/ext/stdlib')
