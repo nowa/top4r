@@ -27,7 +27,8 @@ module Top4R
         :application_version,
         :application_url,
         :user_agent,
-        :source
+        :source,
+        :logger
     ]
     attr_accessor *@@ATTRIBUTES
     
@@ -66,9 +67,11 @@ module Top4R
       :application_version => Top4R::Version.to_version,
       :application_url => 'http://top4r.nowa.me',
       :user_agent => 'default',
-      :source => 'top4r'
+      :source => 'top4r',
+      :logger => nil
     }
     @@config = Top4R::Config.new(@@defaults)
+    @@logger = Top4R::Logger.new(@@config.logger)
     
     # Top4R::Client class methods
     class << self

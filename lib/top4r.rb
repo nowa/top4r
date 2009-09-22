@@ -18,6 +18,7 @@ require 'activesupport'
 
 require_local('top4r/ext')
 require_local('top4r/version')
+require_local('top4r/logger')
 require_local('top4r/meta')
 require_local('top4r/core')
 require_local('top4r/model')
