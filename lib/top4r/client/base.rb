@@ -78,7 +78,7 @@ class Top4R::Client
     end
   
     def create_http_connection
-      protocol, host, port = (@@config.env == :production ? @@config.protocol : @@config.test_protocol), (@@config.env == :production ? @@config.host : @@config.test_host), (@@config.env == :production ? @@config.port : @@config.test_port)
+      protocol, host, port = (@@config.env == :production ? @@config.protocol : (@@config.env == :staging ? @@config.staging_protocol : @@config.test_protocol)), (@@config.env == :production ? @@config.host : (@@config.env == :staging ? @@config.staging_host : @@config.test_host)), (@@config.env == :production ? @@config.port : (@@config.env == :staging ? @@config.staging_port : @@config.test_port))
       conn = Net::HTTP.new(host, port,
                             @@config.proxy_host, @@config.proxy_port,
                             @@config.proxy_user, @@config.proxy_pass)

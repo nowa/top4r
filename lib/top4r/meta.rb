@@ -1,5 +1,5 @@
-# meta.rb contains <tt>Twitter::Meta</tt> and related classes that
-# help define the metadata of the <tt>Twitter4R</tt> project.
+# meta.rb contains <tt>Top4R::Meta</tt> and related classes that
+# help define the metadata of the <tt>Top4R</tt> project.
 
 require('rubygems')
 require('erb')
@@ -8,7 +8,7 @@ class Top4R::Meta #:nodoc:
   attr_accessor :root_dir
   attr_reader :gem_spec, :project_files, :spec_files
 
-  # Initializer for Twitter::Meta class.  Takes <tt>root_dir</tt> as parameter.
+  # Initializer for Top4R::Meta class.  Takes <tt>root_dir</tt> as parameter.
   def initialize(root_dir)
     @root_dir = root_dir
   end
@@ -38,7 +38,7 @@ class Top4R::Meta #:nodoc:
     @spec_files
   end
   
-  # Returns RubyGem specification for Twitter4R project
+  # Returns RubyGem specification for Top4R project
   def gem_spec
     @gem_spec ||= Gem::Specification.new do |spec|
       self.spec_info.each do |key, val|
