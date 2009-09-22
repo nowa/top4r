@@ -34,7 +34,7 @@ class Top4R::Client
         # puts "conn: #{connection.inspect}"
         # puts "request: #{request.inspect}"
         response = connection.request(request, body)
-        # puts "response: #{response.body}"
+        @@logger.info "response: #{response.body}"
         handle_rest_response(response)
         response
       end
@@ -121,7 +121,7 @@ class Top4R::Client
       uri = @@config.env == :production ? @@config.rest_uri : @@config.test_rest_uri
       params = append_top_params(params.merge({:method => method}))
       path = (params.size > 0) ? "#{uri}?#{params.to_http_str}" : uri
-      # puts "path: #{path}"
+      @@logger.info "path: #{path}"
       Net::HTTP::Get.new(path, http_header)
     end
 
