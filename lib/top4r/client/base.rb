@@ -73,13 +73,13 @@ class Top4R::Client
       
       map = JSON.parse(response.body)
       if map["error_rsp"].is_a?(Hash) and map["error_rsp"]["code"].to_s == "630"
-        @logger.info "Raising SuiteNotOrderedError..."
+        @@logger.info "Raising SuiteNotOrderedError..."
         raise Top4R::SuiteNotOrderedError.new(:code => map["error_rsp"]["code"],
                                       :message => map["error_rsp"]["msg"],
                                       :error => map["error_rsp"],
                                       :uri => uri)
       else
-        @logger.info "Raising RESTError..."
+        @@logger.info "Raising RESTError..."
         raise Top4R::RESTError.new(:code => map["error_rsp"]["code"],
                                     :message => map["error_rsp"]["msg"],
                                     :error => map["error_rsp"],
