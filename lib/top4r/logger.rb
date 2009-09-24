@@ -19,6 +19,6 @@ class Top4R::Logger
   end
   
   def info(log)
-    @logger.info log if @trace
+    @logger.info "top4r trace: #{log}" if @trace
   end
 end
