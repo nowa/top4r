@@ -45,6 +45,12 @@ module Top4R
     end
   end # RESTError
   
+  class SuiteNotOrderedError < RESTError
+    def to_s
+      "错误代号#{@code}，您没有订购该服务！"
+    end
+  end
+  
   class LoginRequiredError < RuntimeError
     include ClassUtilMixin
     @@ATTRIBUTES = [:model, :method]

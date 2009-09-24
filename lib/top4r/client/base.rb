@@ -72,10 +72,17 @@ class Top4R::Client
       end
       
       map = JSON.parse(response.body)
-      raise Top4R::RESTError.new(:code => map["error_rsp"]["code"],
+      if map["error_rsp"].is_a?(Hash) and map["error_rsp"]["code"].to_s == "630"
+        raise Top4R::SuiteNotOrderedError.new(:code => map["error_rsp"]["code"],
+                                      :message => map["error_rsp"]["msg"],
+                                      :error => map["error_rsp"],
+                                      :uri => uri)
+      else
+        raise Top4R::RESTError.new(:code => map["error_rsp"]["code"],
                                     :message => map["error_rsp"]["msg"],
                                     :error => map["error_rsp"],
-                                    :uri => uri) if map["error_rsp"].is_a?(Hash)
+                                    :uri => uri)
+      end
     end
   
     def create_http_connection
