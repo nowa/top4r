@@ -78,7 +78,7 @@ class Top4R::Client
                                       :message => map["error_rsp"]["msg"],
                                       :error => map["error_rsp"],
                                       :uri => uri)
-      else
+      elsif map["error_rsp"].is_a?(Hash)
         @@logger.info "Raising RESTError..."
         raise Top4R::RESTError.new(:code => map["error_rsp"]["code"],
                                     :message => map["error_rsp"]["msg"],
