@@ -13,7 +13,7 @@ class Top4R::Client
     @@logger = Top4R::Logger.new(@@config.logger, @@config.trace)
     if @parameters and @session
       @parameters = Base64.decode64(@parameters).split('&').inject({}) do |hsh, i| kv = i.split('='); hsh[kv[0]] = kv[1]; hsh end
-      @login = user(@parameters['visitor_nick'])
+      @login = user(@parameters['visitor_nick'].to_utf8)
       # puts "login: #{@login.inspect}"
     end
   end
