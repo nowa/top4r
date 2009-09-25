@@ -17,11 +17,11 @@ class Hash
 end
 
 class String
-  def to_gbk(str)
-    Iconv.iconv("GBK//IGNORE", "UTF-8//IGNORE", str).to_s
+  def to_gbk
+    Iconv.iconv("GBK//IGNORE", "UTF-8//IGNORE", self).to_s
   end
   
-  def to_utf8(str)
-    Iconv.iconv("UTF-8//IGNORE", "GBK//IGNORE", str).to_s
+  def to_utf8
+    Iconv.iconv("UTF-8//IGNORE", "GBK//IGNORE", self).to_s
   end
 end
