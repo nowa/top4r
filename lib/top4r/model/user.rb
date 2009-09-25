@@ -6,7 +6,7 @@ module Top4R
       end
       
       def suites(service_code, options = {})
-        @client.suites(self.nick.to_utf8, service_code, :list, options)
+        @client.suites(self.nick, service_code, :list, options)
       end
     end
 
@@ -86,6 +86,7 @@ module Top4R
       end
       @buyer_credit = UserCredit.new(@buyer_credit) if @buyer_credit && @buyer_credit.size > 0
       @seller_credit = UserCredit.new(@seller_credit) if @seller_credit && @seller_credit.size > 0
+      @nick = @nick.to_utf8
       self
     end
   end # User model
