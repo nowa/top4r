@@ -123,7 +123,7 @@ class Top4R::Client
         :v => "1.0"
       })
       params = params.merge({
-        :sign => Digest::MD5.hexdigest(params.sort {|a,b| "#{a[0]}"<=>"#{b[0]}"}.flatten.unshift(@app_secret).join).upcase
+        :sign => Digest::MD5.hexdigest(params.sort {|a,b| "#{a[0]}"<=>"#{b[0]}"}.flatten.unshift(@app_secret).join.to_gbk).upcase
       })
     end
 

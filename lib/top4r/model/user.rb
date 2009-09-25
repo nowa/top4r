@@ -6,7 +6,7 @@ module Top4R
       end
       
       def suites(service_code, options = {})
-        @client.suites(self.nick.to_gbk, service_code, :list, options)
+        @client.suites(self.nick, service_code, :list, options)
       end
     end
 
