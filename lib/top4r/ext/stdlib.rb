@@ -15,3 +15,13 @@ class Hash
     result.chop # remove the last '&' character, since it can be discarded
   end
 end
+
+class String
+  def to_gbk(str)
+    Iconv.iconv("GBK//IGNORE", "UTF-8//IGNORE", str).to_s
+  end
+  
+  def to_utf8(str)
+    Iconv.iconv("UTF-8//IGNORE", "GBK//IGNORE", str).to_s
+  end
+end
