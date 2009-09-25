@@ -1,7 +1,7 @@
 module Top4R::Version
   MAJOR = 0
   MINOR = 0
-  REVISION = 18
+  REVISION = 19
   
   class << self
     # Returns X.Y.Z formatted version string
