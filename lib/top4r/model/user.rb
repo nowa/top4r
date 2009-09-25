@@ -86,7 +86,7 @@ module Top4R
       end
       @buyer_credit = UserCredit.new(@buyer_credit) if @buyer_credit && @buyer_credit.size > 0
       @seller_credit = UserCredit.new(@seller_credit) if @seller_credit && @seller_credit.size > 0
-      @nick = @nick.to_utf8
+      # @nick = @nick.to_utf8
       self
     end
   end # User model
