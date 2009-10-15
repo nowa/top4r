@@ -33,7 +33,7 @@ class Top4R::Client
         request = yield connection if block_given?
         # puts "conn: #{connection.inspect}"
         # puts "request: #{request.inspect}"
-        timeout(10) do
+        timeout(15) do
           response = connection.request(request, body)
           @@logger.info "response: #{response.body}"
         end
