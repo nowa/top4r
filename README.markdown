@@ -1,6 +1,6 @@
 ### TOP4R ###
 
-[http://top4r.labs.nowa.me](http://top4r.labs.nowa.me)  
+[http://top4r.rubyforge.org](http://top4r.rubyforge.org)  
 Thanks Twitter4R <[http://twitter4r.rubyforge.org](http://twitter4r.rubyforge.org)>.
 
 ### DESCRIPTION ###

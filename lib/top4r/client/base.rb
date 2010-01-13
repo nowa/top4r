@@ -29,6 +29,7 @@ class Top4R::Client
     def http_connect(body=nil, &block)
       require_block(block_given?)
       connection = create_http_connection
+      response = nil
       connection.start do |connection|
         request = yield connection if block_given?
         # puts "conn: #{connection.inspect}"

@@ -10,7 +10,6 @@ module Top4R
     end
     
     def unmarshal_other_attrs
-      @id = 0
       self
     end
   end
