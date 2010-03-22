@@ -8,6 +8,12 @@ class Top4R::Client
     u = u.nick if u.is_a?(Top4R::User)
     params = {:service_code => service_code}.merge(options).merge(:nick => u)
     response = http_connect {|conn| create_http_get_request(@@SUITE_METHODS[method], params)}
+    if response.body == "{\"rsp\":{}}"
+      raise Top4R::SuiteNotOrderedError.new(:code => 630,
+                                    :message => "没有#{service_code}的订购记录",
+                                    :error => "{}",
+                                    :uri => @@SUITE_METHODS[method])
+    end
     suites = Top4R::Suite.unmarshal(JSON.parse(response.body)["rsp"]["suites"])
     suites.each {|suite| bless_model(suite); yield suite if block_given?}
     # puts "\nsuites: #{suites.inspect}"
