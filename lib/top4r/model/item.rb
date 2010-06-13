@@ -69,6 +69,10 @@ module Top4R
       end
     end
     
+    def search(q)
+      @client.items_onsale(q)
+    end
+    
     def unmarshal_other_attrs
       @id = @iid
       if @location && @location.size > 0

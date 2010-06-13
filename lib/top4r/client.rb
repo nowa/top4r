@@ -12,7 +12,12 @@ class Top4R::Client
     },
     :logistic_company => {
       :list => 'taobao.logisticcompanies.get'
-    }
+    },
+    :shop => {
+      :cats_list => 'taobao.sellercats.list.get', 
+      :shop_info => 'taobao.shop.get'      
+    },
+    :item => {}
   }
 end
 
@@ -21,3 +26,5 @@ require 'top4r/client/user'
 require 'top4r/client/shipping'
 require 'top4r/client/trade'
 require 'top4r/client/suite'
+require 'top4r/client/item'
+require 'top4r/client/shop'

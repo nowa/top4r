@@ -51,7 +51,7 @@ module Top4R
       :rest_uri => '/router/rest',
       :port => 80,
       :protocol => :http,
-      :test_host => 'gw.sandbox.taobao.com',
+      :test_host => 'gw.api.tbsandbox.com',
       :test_rest_uri => '/router/rest',
       :test_port => 80,
       :test_protocol => :http,

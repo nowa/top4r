@@ -8,6 +8,14 @@ module Top4R
       def suites(service_code, options = {})
         @client.suites(self.nick, service_code, :list, options)
       end
+      
+      def search_items(q = nil, options = {})
+        @client.items_onsale(q, :onsale_list, options)
+      end
+      
+      def cats
+        @client.seller_cats(self.nick)
+      end
     end
 
     def self.included(receiver)
