@@ -122,9 +122,9 @@ class Top4R::Client
         :session => @session,
         :timestamp => Time.now.strftime("%Y-%m-%d %H:%M:%S"),
         :format => "#{@@config.format}",
-        :app_key => @app_key,
-        :v => "1.0"
+        :app_key => @app_key
       })
+      params[:v] = "1.0" unless params[:v]
       params = params.merge({
         :sign => Digest::MD5.hexdigest(params.sort {|a,b| "#{a[0]}"<=>"#{b[0]}"}.flatten.unshift(@app_secret).join).upcase
       })
