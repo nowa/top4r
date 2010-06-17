@@ -8,9 +8,9 @@ class Top4R::Client
     options = {:q => q}.merge(options) if q
     params = {:fields => Top4R::Item.fields}.merge(options)
     response = http_connect {|conn| create_http_get_request(@@ITEM_METHODS[method], params)}
-    shops = Top4R::Item.unmarshal(JSON.parse(response.body)["rsp"]["items"])
-    shops.each {|shop| bless_model(shop); yield shop if block_given?}
+    items = Top4R::Item.unmarshal(JSON.parse(response.body)["rsp"]["items"])
+    items.each {|item| bless_model(item); yield item if block_given?}
     @total_results = JSON.parse(response.body)["rsp"]["totalResults"].to_i
-    shops
+    items
   end
 end

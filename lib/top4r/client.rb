@@ -17,7 +17,8 @@ class Top4R::Client
       :cats_list => 'taobao.sellercats.list.get', 
       :shop_info => 'taobao.shop.get'      
     },
-    :item => {}
+    :item => {},
+    :taobaoke_item => {}
   }
 end
 
