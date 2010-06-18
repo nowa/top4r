@@ -9,7 +9,7 @@ class Top4R::Client
     params = {:fields => Top4R::TaobaokeItem.fields, :v => "2.0"}.merge(options)
     response = http_connect {|conn| create_http_get_request(@@TAOBAOKEITEM_METHODS[method], params)}
     
-    items = Top4R::TaobaokeItem.unmarshal(JSON.parse(response.body)["taobaoke_items_get_response"]["taobaoke_items"])
+    items = Top4R::TaobaokeItem.unmarshal(JSON.parse(response.body)["taobaoke_items_get_response"]["taobaoke_items"]["taobaoke_item"])
     items.each {|item| bless_model(item); yield item if block_given?}
     @total_results = JSON.parse(response.body)["taobaoke_items_get_response"]["total_results"].to_i
     items
