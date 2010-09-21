@@ -14,7 +14,8 @@ TOP4R封装了淘宝开发平台的接口，帮助你快速构建基于TOP的应
 == REQUIREMENTS:
  
 * rubygems
+* json
  
 == INSTALL:
  
-sudo gem install nowa-top4r -s http://gems.github.com
+sudo gem install top4r
