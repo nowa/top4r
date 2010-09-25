@@ -14,10 +14,15 @@ class Top4R::Client
                                     :error => "{}",
                                     :uri => @@SUITE_METHODS[method])
     end
-    suites = Top4R::Suite.unmarshal(JSON.parse(response.body)[rsp(@@SUITE_METHODS[method])]["suites"]["suite"])
-    suites.each {|suite| bless_model(suite); yield suite if block_given?}
-    # puts "\nsuites: #{suites.inspect}"
-    @total_results = JSON.parse(response.body)[rsp(@@SUITE_METHODS[method])]["total_results"].to_i
+    result = JSON.parse(response.body)[rsp(@@SUITE_METHODS[method])]
+    if result["suites"]
+      suites = Top4R::Suite.unmarshal(result["suites"]["suite"])
+      suites.each {|suite| bless_model(suite); yield suite if block_given?}
+      @total_results = result["total_results"].to_i
+    else
+      @total_results = 0
+      suites = []
+    end
     suites
   end
 end

@@ -19,10 +19,15 @@ class Top4R::Client
       params = {:start_modified => (now - 24.hours).strftime("%Y-%m-%d %H:%M:%S"), :end_modified => now.strftime("%Y-%m-%d %H:%M:%S")}.merge(params)
     end
     response = http_connect {|conn| create_http_get_request(@@TRADE_METHODS[method], params)}
-    trades = Top4R::Trade.unmarshal(JSON.parse(response.body)[rsp(@@TRADE_METHODS[method])]["trades"]["trade"])
-    trades.each {|trade| bless_model(trade); yield trade if block_given?}
-    # puts "\ntrades: #{trades.inspect}"
-    @total_results = JSON.parse(response.body)[rsp(@@TRADE_METHODS[method])]["total_results"].to_i
+    result = JSON.parse(response.body)[rsp(@@TRADE_METHODS[method])]
+    if result["trades"]
+      trades = Top4R::Trade.unmarshal(result["trades"]["trade"])
+      trades.each {|trade| bless_model(trade); yield trade if block_given?}
+      @total_results = result["total_results"].to_i
+    else
+      @total_results = 0
+      trades = []
+    end
     trades
   end
   

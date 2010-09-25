@@ -12,7 +12,7 @@ class Top4R::Client
     if result['items']
       items = Top4R::Item.unmarshal(result["items"]["item"])
       items.each {|item| bless_model(item); yield item if block_given?}
-      @total_results = JSON.parse(response.body)[rsp(@@ITEM_METHODS[method])]["total_results"].to_i
+      @total_results = result["total_results"].to_i
     else
       @total_results = 0
       items = []
