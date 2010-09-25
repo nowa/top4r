@@ -8,9 +8,15 @@ class Top4R::Client
     options = {:q => q}.merge(options) if q
     params = {:fields => Top4R::Item.fields}.merge(options)
     response = http_connect {|conn| create_http_get_request(@@ITEM_METHODS[method], params)}
-    items = Top4R::Item.unmarshal(JSON.parse(response.body)["rsp"]["items"])
-    items.each {|item| bless_model(item); yield item if block_given?}
-    @total_results = JSON.parse(response.body)["rsp"]["totalResults"].to_i
+    result = JSON.parse(response.body)[rsp(@@ITEM_METHODS[method])]
+    if result['items']
+      items = Top4R::Item.unmarshal(result["items"]["item"])
+      items.each {|item| bless_model(item); yield item if block_given?}
+      @total_results = JSON.parse(response.body)[rsp(@@ITEM_METHODS[method])]["total_results"].to_i
+    else
+      @total_results = 0
+      items = []
+    end
     items
   end
 end

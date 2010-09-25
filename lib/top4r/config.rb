@@ -66,7 +66,7 @@ module Top4R
       :application_key => '12000224',
       :application_secret => '2f26cb1a99570aa72daee12a1db88e63',
       :application_version => Top4R::Version.to_version,
-      :application_url => 'http://top4r.nowa.me',
+      :application_url => 'http://top4r.labs.nowa.me',
       :user_agent => 'default',
       :source => 'top4r',
       :logger => nil,

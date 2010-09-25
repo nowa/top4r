@@ -13,8 +13,12 @@ module Top4R
         @client.items_onsale(q, :onsale_list, options)
       end
       
-      def cats
-        @client.seller_cats(self.nick)
+      def cats(options = {})
+        @client.seller_cats(self.nick, :cats_list, options)
+      end
+      
+      def shop(options = {})
+        @client.shop(self.nick, :shop_info, options)
       end
     end
 
@@ -46,6 +50,17 @@ module Top4R
       def attributes; @@ATTRIBUTES; end
     end
   end # UserCredit model
+  
+  # UserSubscribe Model
+  class UserSubscribe
+    include ModelMixin
+    @@ATTRIBUTES = [:status, :start_date, :end_date, :version_no]
+    attr_accessor *@@ATTRIBUTES
+
+    class << self
+      def attributes; @@ATTRIBUTES; end
+    end
+  end # UserCredit model
 
   # User Model
   class User
@@ -53,7 +68,7 @@ module Top4R
     @@ATTRIBUTES = [:id, :user_id, :nick, :sex, :buyer_credit, :seller_credit, :location, 
       :created, :last_visit, :birthday, :type, :has_more_pic, :item_img_num, :item_img_size, 
       :prop_img_num, :prop_img_size, :auto_repost, :promoted_type, :status, :alipay_bind, 
-      :consumer_protection, :other_attrs]
+      :consumer_protection, :alipay_account, :alipay_no, :email, :magazine_subscribe, :vertical_market]
     attr_accessor *@@ATTRIBUTES
 
     class << self

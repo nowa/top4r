@@ -33,7 +33,7 @@ module Top4R
   
   class RESTError < RuntimeError
     include ClassUtilMixin
-    @@ATTRIBUTES = [:code, :message, :uri, :error]
+    @@ATTRIBUTES = [:code, :message, :uri, :error, :sub_code, :sub_msg]
     attr_accessor *@@ATTRIBUTES
 
     # Returns string in following format:
@@ -41,7 +41,7 @@ module Top4R
     # For example,
     # "HTTP 404: Resource Not Found at /i_am_crap.json"
     def to_s
-      "HTTP #{@code}: #{@message} at #{@uri}"
+      "HTTP #{@code}: #{@message} at #{@uri}, sub_code: #{@sub_code}, sub_msg: #{@sub_msg}"
     end
   end # RESTError
   

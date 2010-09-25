@@ -11,7 +11,7 @@ class Top4R::Client
       :list => 'taobao.areas.get'
     },
     :logistic_company => {
-      :list => 'taobao.logisticcompanies.get'
+      :list => 'taobao.logistics.companies.get'
     },
     :shop => {
       :cats_list => 'taobao.sellercats.list.get', 

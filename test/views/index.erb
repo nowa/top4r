@@ -1,0 +1,59 @@
+<h3>User:</h3>
+
+logged_in?: <%= @top.logged_in? %><br>
+nick: <%= @top.login.nick %><br>
+user query: <%= @top.user('alipublic01').nick %><br>
+users query: <br>
+<ul>
+	<% for user in @top.user('alipublic01, alipublic02, alipublic03', :multi_info) %>
+	<li><%= user.user_id %>, <%= user.nick %>, <%= user.created %></li>
+	<% end %>
+</ul>
+
+<h3>Item:</h3>
+
+my items: <br>
+<%
+items = @top.login.search_items('t')
+if items.size > 0
+	for item in items
+%>
+	<%= item.title %><br>
+<% 
+	end
+else
+%>
+	Found nothing.
+<% end %>
+
+<h3>Area</h3>
+
+areas:<br>
+<%
+	for area in @top.areas
+%>
+	<%= area.name %><br>
+<% end %>
+<br>
+<br>
+companies:<br>
+<% for com in @top.logistic_companies %>
+	<%= com.code %>, <%= com.name %><br>
+<% end %>
+<br>
+<br>
+
+<h3>Shop</h3>
+
+seller cats:<br>
+<% for cat in @top.login.cats %>
+	<%= cat.name %><br>
+<% end %>
+<br>
+
+shop info:<br>
+<% shop = @top.login.shop %>
+<ul>
+	<li>title: <%= shop.title %></li>
+	<li>desc: <%= shop.desc %></li>
+</ul>

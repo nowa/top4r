@@ -2,40 +2,30 @@ module Top4R
   # Area model
   class Area
     include ModelMixin
-    @@ATTRIBUTES = [:id, :area_id, :area_type, :area_name, :parent_id, :zip]
+    @@ATTRIBUTES = [:id, :type, :name, :parent_id, :zip]
     attr_accessor *@@ATTRIBUTES
     
     class << self
       def attributes; @@ATTRIBUTES; end
       
       def default_public_fields
-        ["area_id", "area_type", "area_name", "parent_id", "zip"]
+        ["id", "type", "name", "parent_id", "zip"]
       end
-    end
-    
-    def unmarshal_other_attrs
-      @id = @area_id
-      self
     end
   end
   
   # LogisticCompany model
   class LogisticCompany
     include ModelMixin
-    @@ATTRIBUTES = [:id, :company_id, :company_code, :company_name]
+    @@ATTRIBUTES = [:id, :code, :name]
     attr_accessor *@@ATTRIBUTES
     
     class << self
       def attributes; @@ATTRIBUTES; end
       
       def default_public_fields
-        ["company_id", "company_code", "company_name"]
+        ["id", "code", "name"]
       end
-    end
-    
-    def unmarshal_other_attrs
-      @id = @company_id
-      self
     end
   end
   
@@ -56,7 +46,7 @@ module Top4R
     include ModelMixin
     @@ATTRIBUTES = [:id, :tid, :seller_nick, :buyer_nick, :delivery_start, :delivery_end, 
       :out_sid, :item_title, :receiver_name, :receiver_phone, :receiver_mobile, :receiver_location, 
-      :status, :type, :freight_payer, :seller_confirm, :company_name]
+      :status, :type, :freight_payer, :seller_confirm, :company_name, :is_success, :created, :modified]
     attr_accessor *@@ATTRIBUTES
     
     class << self

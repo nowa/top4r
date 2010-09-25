@@ -2,7 +2,7 @@ module Top4R
   # ItemImg Model
   class ItemImg
     include ModelMixin
-    @@ATTRIBUTES = [:id, :url, :position]
+    @@ATTRIBUTES = [:id, :url, :position, :created]
     attr_accessor *@@ATTRIBUTES
 
     class << self
@@ -13,7 +13,7 @@ module Top4R
   # PropImg Model
   class PropImg
     include ModelMixin
-    @@ATTRIBUTES = [:id, :url, :properties, :position]
+    @@ATTRIBUTES = [:id, :url, :properties, :position, :created]
     attr_accessor *@@ATTRIBUTES
 
     class << self
@@ -39,7 +39,7 @@ module Top4R
   # Video Model
   class Video
     include ModelMixin
-    @@ATTRIBUTES = [:id, :video_id, :url, :created, :modified]
+    @@ATTRIBUTES = [:id, :video_id, :url, :created, :modified, :iid, :num_iid]
     attr_accessor *@@ATTRIBUTES
     
     class << self
@@ -54,9 +54,10 @@ module Top4R
       :seller_cids, :props, :input_pids, :input_str, :desc, :pic_path, :num, :valid_thru, 
       :list_time, :delist_time, :stuff_status, :location, :price, :post_fee, :express_fee, 
       :ems_fee, :has_discount, :freight_payer, :has_invoice, :has_warranty, :has_showcase, 
-      :modified, :increment, :auto_repost, :approve_status, :postage_id, :product_id, :auction_point, 
+      :modified, :increment, :approve_status, :postage_id, :product_id, :auction_point, 
       :property_alias, :item_imgs, :prop_imgs, :skus, :outer_id, :is_virtual, :is_taobao, 
-      :is_ex, :videos, :is_3D, :score, :volume, :one_station]
+      :is_ex, :is_timing, :videos, :is_3D, :score, :volume, :one_station, :second_kill, 
+      :auto_fill, :props_name, :violation, :created, :is_prepay, :ww_status, :promoted_service]
     attr_accessor *@@ATTRIBUTES
     
     class << self
@@ -80,16 +81,16 @@ module Top4R
       else
         @location = nil
       end
-      if @item_imgs.is_a?(Array) && @item_imgs.size > 0
-        @item_imgs.map {|img| ItemImg.new(img)}
-      else
-        @item_imgs = []
-      end
-      if @prop_imgs.is_a?(Array) && @prop_imgs.size > 0
-        @prop_imgs.map {|img| PropImg.new(img)}
-      else
-        @prop_imgs = []
-      end
+      # if @item_imgs.is_a?(Array) && @item_imgs.size > 0
+      #         @item_imgs.map {|img| ItemImg.new(img)}
+      #       else
+      #         @item_imgs = []
+      #       end
+      #       if @prop_imgs.is_a?(Array) && @prop_imgs.size > 0
+      #         @prop_imgs.map {|img| PropImg.new(img)}
+      #       else
+      #         @prop_imgs = []
+      #       end
       
       self
     end

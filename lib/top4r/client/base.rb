@@ -75,6 +75,7 @@ class Top4R::Client
       end
       
       map = JSON.parse(response.body)
+      # API 1.0
       if map["error_rsp"].is_a?(Hash) and map["error_rsp"]["code"].to_s == "630"
         @@logger.info "Raising SuiteNotOrderedError..."
         raise Top4R::SuiteNotOrderedError.new(:code => map["error_rsp"]["code"],
@@ -86,6 +87,15 @@ class Top4R::Client
         raise Top4R::RESTError.new(:code => map["error_rsp"]["code"],
                                     :message => map["error_rsp"]["msg"],
                                     :error => map["error_rsp"],
+                                    :uri => uri)
+      # API 2.0
+      elsif map["error_response"].is_a?(Hash)
+        @@logger.info "Raising RESTError..."
+        raise Top4R::RESTError.new(:code => map["error_response"]["code"],
+                                    :message => map["error_response"]["msg"],
+                                    :sub_code => map["error_response"]["sub_code"], 
+                                    :sub_msg => map["error_response"]["sub_msg"], 
+                                    :error => map["error_response"],
                                     :uri => uri)
       end
     end
@@ -124,7 +134,7 @@ class Top4R::Client
         :format => "#{@@config.format}",
         :app_key => @app_key
       })
-      params[:v] = "1.0" unless params[:v]
+      params[:v] = "2.0" unless params[:v]
       params = params.merge({
         :sign => Digest::MD5.hexdigest(params.sort {|a,b| "#{a[0]}"<=>"#{b[0]}"}.flatten.unshift(@app_secret).join).upcase
       })
@@ -145,5 +155,9 @@ class Top4R::Client
     def create_http_delete_request(uri, params = {})
       path = (params.size > 0) ? "#{uri}?#{params.to_http_str}" : uri
       Net::HTTP::Delete.new(path, http_header)
+    end
+    
+    def rsp(api)
+      "#{api.split('.')[1..-1].join('_')}_response"
     end
 end

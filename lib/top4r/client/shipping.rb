@@ -4,7 +4,7 @@ class Top4R::Client
   }
   
   @@LOGISTIC_COMPANY_METHODS = {
-    :list => 'taobao.logisticcompanies.get'
+    :list => 'taobao.logistics.companies.get'
   }
   
   @@DELIVERY_METHODS = {
@@ -15,7 +15,7 @@ class Top4R::Client
     valid_method(method, @@AREA_METHODS, :area)
     params = {:fields => Top4R::Area.fields}.merge(options)
     response = http_connect {|conn| create_http_get_request(@@AREA_METHODS[method], params)}
-    areas = Top4R::Area.unmarshal(JSON.parse(response.body)["rsp"]["areas"])
+    areas = Top4R::Area.unmarshal(JSON.parse(response.body)[rsp(@@AREA_METHODS[method])]["areas"]["area"])
     areas.each {|area| bless_model(area); yield area if block_given?}
     areas
   end
@@ -24,7 +24,7 @@ class Top4R::Client
     valid_method(method, @@LOGISTIC_COMPANY_METHODS, :logistic_company)
     params = {:fields => Top4R::LogisticCompany.fields}.merge(options)
     response = http_connect {|conn| create_http_get_request(@@LOGISTIC_COMPANY_METHODS[method], params)}
-    logistic_companies = Top4R::LogisticCompany.unmarshal(JSON.parse(response.body)["rsp"]["logistic_companies"])
+    logistic_companies = Top4R::LogisticCompany.unmarshal(JSON.parse(response.body)[rsp(@@LOGISTIC_COMPANY_METHODS[method])]["logistics_companies"]["logistics_company"])
     logistic_companies.each {|logistic_company| bless_model(logistic_company); yield logistic_company if block_given?}
     logistic_companies
   end
@@ -40,6 +40,6 @@ class Top4R::Client
     end
     response = http_connect {|conn| create_http_get_request(@@DELIVERY_METHODS[method], params)}
     json = JSON.parse(response.body)
-    json.is_a?(Hash) ? json["rsp"]["is_success"] : false
+    json.is_a?(Hash) ? json[rsp(@@DELIVERY_METHODS[method])]["shipping"]["is_success"] : false
   end
 end

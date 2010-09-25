@@ -24,8 +24,15 @@ class Top4R::Client
   protected
   
     def user_request(u, method, options)
-      params = {:fields => Top4R::User.fields}.merge(options).merge(:nick => u)
+      @@logger.info "u: #{u}"
+      params = {:fields => Top4R::User.fields}.merge(options).merge((method == :info ? :nick : :nicks) => u)
       response = http_connect {|conn| create_http_get_request(@@USER_METHODS[method], params)}
-      Top4R::User.unmarshal(JSON.parse(response.body)["rsp"]["users"])
+      @@logger.info "rsp: #{rsp(@@USER_METHODS[method])}"
+      
+      if method == :info
+        return [Top4R::User.unmarshal(JSON.parse(response.body)[rsp(@@USER_METHODS[method])]["user"])]
+      else
+        return Top4R::User.unmarshal(JSON.parse(response.body)[rsp(@@USER_METHODS[method])]["users"]["user"])
+      end
     end
 end

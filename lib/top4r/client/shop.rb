@@ -9,7 +9,7 @@ class Top4R::Client
     u = u.nick if u.is_a?(Top4R::User)
     params = options.merge(:nick => u)
     response = http_connect {|conn| create_http_get_request(@@SHOP_METHODS[method], params)}
-    seller_cats = Top4R::SellerCat.unmarshal(JSON.parse(response.body)["rsp"]["seller_cats"])
+    seller_cats = Top4R::SellerCat.unmarshal(JSON.parse(response.body)[rsp(@@SHOP_METHODS[method])]["seller_cats"]["seller_cat"])
     seller_cats.each {|cat| bless_model(cat); yield cat if block_given?}
     # puts "\nsuites: #{suites.inspect}"
     seller_cats
@@ -20,7 +20,7 @@ class Top4R::Client
     u = u.nick if u.is_a?(Top4R::User)
     params = {:fields => Top4R::Shop.fields}.merge(options).merge(:nick => u)
     response = http_connect {|conn| create_http_get_request(@@SHOP_METHODS[method], params)}
-    shops = Top4R::Shop.unmarshal(JSON.parse(response.body)["rsp"]["shops"])
-    method == :shop_info ? bless_model(shops.first) : bless_models(shops)
+    shop = Top4R::Shop.unmarshal(JSON.parse(response.body)[rsp(@@SHOP_METHODS[method])]["shop"])
+    bless_model(shop)
   end
 end

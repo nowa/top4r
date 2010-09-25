@@ -19,10 +19,10 @@ class Top4R::Client
       params = {:start_modified => (now - 24.hours).strftime("%Y-%m-%d %H:%M:%S"), :end_modified => now.strftime("%Y-%m-%d %H:%M:%S")}.merge(params)
     end
     response = http_connect {|conn| create_http_get_request(@@TRADE_METHODS[method], params)}
-    trades = Top4R::Trade.unmarshal(JSON.parse(response.body)["rsp"]["trades"])
+    trades = Top4R::Trade.unmarshal(JSON.parse(response.body)[rsp(@@TRADE_METHODS[method])]["trades"]["trade"])
     trades.each {|trade| bless_model(trade); yield trade if block_given?}
     # puts "\ntrades: #{trades.inspect}"
-    @total_results = JSON.parse(response.body)["rsp"]["totalResults"].to_i
+    @total_results = JSON.parse(response.body)[rsp(@@TRADE_METHODS[method])]["total_results"].to_i
     trades
   end
   
@@ -34,15 +34,15 @@ class Top4R::Client
     parsed_body = JSON.parse(response.body)
     
     if [:info, :fullinfo].member?(method)
-      trades = Top4R::Trade.unmarshal(parsed_body["rsp"]["trades"])
+      trades = Top4R::Trade.unmarshal(parsed_body[rsp(@@TRADE_METHODS[method])]["trade"])
       bless_model(trades.first)
     elsif method == :confirmfee
-      confirmfees = Top4R::TradeConfirmFee.unmarshal(parsed_body["rsp"]["confirmFees"])
+      confirmfees = Top4R::TradeConfirmFee.unmarshal(parsed_body[rsp(@@TRADE_METHODS[method])]["trade_confirm_fee"])
       bless_models(confirmfees)
     elsif [:close, :update_memo].member?(method)
-      parsed_body["rsp"]["modified"]
+      parsed_body[rsp(@@TRADE_METHODS[method])]["trade"]["modified"]
     elsif method == :add_memo
-      parsed_body["rsp"]["created"]
+      parsed_body[rsp(@@TRADE_METHODS[method])]["trade"]["created"]
     end
   end
 end

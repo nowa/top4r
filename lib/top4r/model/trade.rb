@@ -3,9 +3,10 @@ module Top4R
   class Order
     include ModelMixin
     @@ATTRIBUTES = [:id, :iid, :sku_id, :sku_properties_name, :item_meal_name, :num, :title, 
-      :price, :pic_path, :seller_nick, :buyer_nick, :type, :created, :refund_status, :tid, 
+      :price, :pic_path, :seller_nick, :buyer_nick, :type, :created, :refund_status, :oid, 
       :outer_iid, :outer_sku_id, :total_fee, :payment, :discount_fee, :adjust_fee, :status, 
-      :snapshot_url, :timeout_action_time]
+      :snapshot_url, :snapshot, :timeout_action_time, :buyer_rate, :seller_rate, :refund_id, 
+      :seller_type, :modified, :num_iid]
     attr_accessor *@@ATTRIBUTES
     
     class << self
@@ -30,7 +31,7 @@ module Top4R
   # TradeConfirmFee model
   class TradeConfirmFee
     include ModelMixin
-    @@ATTRIBUTES = [:id, :confirm_fee, :confirm_post_fee, :is_last_detail_order]
+    @@ATTRIBUTES = [:id, :confirm_fee, :confirm_post_fee, :is_last_order]
     attr_accessor *@@ATTRIBUTES
     
     class << self
@@ -43,18 +44,30 @@ module Top4R
     end
   end
   
+  # PromotionDetail model
+  class PromotionDetail
+    include ModelMixin
+    @@ATTRIBUTES = [:id, :promotion_name, :discount_fee]
+    attr_accessor *@@ATTRIBUTES
+    
+    class << self
+      def attributes; @@ATTRIBUTES; end
+    end
+  end
+  
   # Trade model
   class Trade
     include ModelMixin
     @@ATTRIBUTES = [:id, :seller_nick, :buyer_nick, :title, :type, :created, :iid, :price, 
-      :pic_path, :num, :tid, :buyer_message, :sid, :shipping_type, :alipay_no, :payment, 
-      :discount_fee, :adjust_fee, :snapshot_url, :status, :seller_rate, :buyer_rate, 
-      :buyer_memo, :seller_memo, :pay_time, :end_time, :modified, :buyer_obtain_point_fee, 
+      :pic_path, :num, :tid, :buyer_message, :shipping_type, :alipay_no, :payment, 
+      :discount_fee, :adjust_fee, :snapshot_url, :snapshot, :status, :seller_rate, :buyer_rate, 
+      :buyer_memo, :seller_memo, :trade_memo, :pay_time, :end_time, :modified, :buyer_obtain_point_fee, 
       :point_fee, :real_point_fee, :total_fee, :post_fee, :buyer_alipay_no, :receiver_name,
       :receiver_state, :receiver_city, :receiver_district, :receiver_address, :receiver_zip, 
       :receiver_mobile, :receiver_phone, :consign_time, :buyer_email, :commission_fee, 
       :seller_alipay_no, :seller_mobile, :seller_phone, :seller_name, :seller_email, 
-      :available_confirm_fee, :has_postFee, :received_payment, :cod_fee, :timeout_action_time, :orders]
+      :available_confirm_fee, :has_post_fee, :received_payment, :cod_fee, :timeout_action_time, 
+      :is_3D, :buyer_flag, :seller_flag, :num_iid, :promotion, :promotion_details, :invoice_name, :orders]
     attr_accessor *@@ATTRIBUTES
     
     class << self
@@ -94,8 +107,8 @@ module Top4R
     
     def unmarshal_other_attrs
       @id = @tid
-      if @orders.is_a?(Array)
-        @orders = @orders.map{|order| Order.new(order)}
+      if @orders.is_a?(Hash)
+        @orders = @orders["order"].map{|order| Order.new(order)}
       end
       self
     end
