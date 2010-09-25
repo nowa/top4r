@@ -20,7 +20,7 @@ class Top4R::Client
     end
     response = http_connect {|conn| create_http_get_request(@@TRADE_METHODS[method], params)}
     result = JSON.parse(response.body)[rsp(@@TRADE_METHODS[method])]
-    if result["trades"]
+    if result.is_a?(Hash) and result["trades"]
       trades = Top4R::Trade.unmarshal(result["trades"]["trade"])
       trades.each {|trade| bless_model(trade); yield trade if block_given?}
       @total_results = result["total_results"].to_i

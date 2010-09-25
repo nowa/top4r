@@ -9,7 +9,7 @@ class Top4R::Client
     params = {:fields => Top4R::Item.fields}.merge(options)
     response = http_connect {|conn| create_http_get_request(@@ITEM_METHODS[method], params)}
     result = JSON.parse(response.body)[rsp(@@ITEM_METHODS[method])]
-    if result['items']
+    if result.is_a?(Hash) and result['items']
       items = Top4R::Item.unmarshal(result["items"]["item"])
       items.each {|item| bless_model(item); yield item if block_given?}
       @total_results = result["total_results"].to_i

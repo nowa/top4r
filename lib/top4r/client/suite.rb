@@ -15,7 +15,7 @@ class Top4R::Client
                                     :uri => @@SUITE_METHODS[method])
     end
     result = JSON.parse(response.body)[rsp(@@SUITE_METHODS[method])]
-    if result["suites"]
+    if result.is_a?(Hash) and result["suites"]
       suites = Top4R::Suite.unmarshal(result["suites"]["suite"])
       suites.each {|suite| bless_model(suite); yield suite if block_given?}
       @total_results = result["total_results"].to_i

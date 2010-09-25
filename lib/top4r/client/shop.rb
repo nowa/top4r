@@ -10,7 +10,7 @@ class Top4R::Client
     params = options.merge(:nick => u)
     response = http_connect {|conn| create_http_get_request(@@SHOP_METHODS[method], params)}
     result = JSON.parse(response.body)[rsp(@@SHOP_METHODS[method])]
-    if result["seller_cats"]
+    if result.is_a?(Hash) and result["seller_cats"]
       seller_cats = Top4R::SellerCat.unmarshal(result["seller_cats"]["seller_cat"])
       seller_cats.each {|cat| bless_model(cat); yield cat if block_given?}
     else
