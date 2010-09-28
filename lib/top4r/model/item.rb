@@ -51,7 +51,7 @@ module Top4R
   class Item
     include ModelMixin
     @@ATTRIBUTES = [:id, :iid, :detail_url, :num_iid, :title, :nick, :type, :cid, 
-      :seller_cids, :props, :input_pids, :input_str, :desc, :pic_path, :num, :valid_thru, 
+      :seller_cids, :props, :input_pids, :input_str, :desc, :pic_url, :num, :valid_thru, 
       :list_time, :delist_time, :stuff_status, :location, :price, :post_fee, :express_fee, 
       :ems_fee, :has_discount, :freight_payer, :has_invoice, :has_warranty, :has_showcase, 
       :modified, :increment, :approve_status, :postage_id, :product_id, :auction_point, 
@@ -64,9 +64,9 @@ module Top4R
       def attributes; @@ATTRIBUTES; end
       
       def default_public_fields
-        ["approve_status", "iid", "num_iid", "title", "nick", "type", "cid", "pic_path", "num", "props", 
+        ["approve_status", "iid", "num_iid", "title", "nick", "type", "cid", "pic_url", "num", "props", 
           "valid_thru", "list_time", "price", "has_discount", "has_invoice", "has_warranty", 
-          "has_showcase", "modified", "delist_time", "postage_id", "seller_cids", "outer_id"]
+          "has_showcase", "modified", "delist_time", "postage_id", "seller_cids", "outer_id", "detail_url"]
       end
     end
     
