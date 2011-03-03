@@ -2,7 +2,7 @@ module Top4R
   # SellerCat Model
   class SellerCat
     include ModelMixin
-    @@ATTRIBUTES = [:id, :cid, :parent_cid, :name, :pict_url, :sort_order, :created, :modified]
+    @@ATTRIBUTES = [:id, :type, :cid, :parent_cid, :name, :pict_url, :sort_order, :created, :modified]
     attr_accessor *@@ATTRIBUTES
     
     class << self
