@@ -14,7 +14,6 @@ require 'cgi'
 require 'json'
 require 'yaml'
 require 'iconv'
-require 'activesupport'
 require 'timeout'
 
 require_local('top4r/ext')
