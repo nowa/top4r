@@ -1,14 +1,14 @@
 # Generated: Tue Sep 28 09:05:01 UTC 2010
 Gem::Specification.new do |s|
   s.name = "top4r"
-  s.version = "0.1.2"
+  s.version = "0.1.4"
   s.platform = Gem::Platform::RUBY
   s.has_rdoc = true
   s.extra_rdoc_files = ["README","CHANGES","TODO","MIT-LICENSE",]
   s.summary = "TOP4R is a library that can help you build plugin for TaoBao.com quickly in pure Ruby."
   s.author = "Nowa Zhu"
   s.email = "nowazhu@gmail.com"
-  s.homepage = "http://top4r.labs.nowa.me"
+  s.homepage = "https://github.com/nowa/top4r"
   s.rubyforge_project = "top4r"
   s.add_dependency("json", ">=1.1.1")
 #  s.require_path = "lib"

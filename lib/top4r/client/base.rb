@@ -2,10 +2,11 @@ class Top4R::Client
   alias :old_inspect :inspect
   attr_accessor :total_results
   attr_reader :login
+  attr_accessor :app_key, :app_secret, :parameters, :session
   
   def inspect
     s = old_inspect
-    s.gsub!(/@app_secret=".*?"/, '@app_secret="XXXX"')
+    s.gsub!(/@app_secret=".*?"/, '@app_secret="******"')
   end
   
   def init
@@ -19,7 +20,6 @@ class Top4R::Client
   end
   
   protected
-    attr_accessor :app_key, :app_secret, :parameters, :session
     
     def login_required(model, method)
       return if logged_in?
