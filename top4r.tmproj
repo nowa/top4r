@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>lib/top4r/client/base.rb</string>
+	<string>lib/top4r/client/item.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -21,20 +21,6 @@
 	<integer>237</integer>
 	<key>metaData</key>
 	<dict>
-		<key>README.textile</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>20</integer>
-				<key>line</key>
-				<integer>17</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>bin/top4rsh</key>
 		<dict>
 			<key>caret</key>
@@ -98,44 +84,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>5</integer>
+				<integer>31</integer>
 				<key>line</key>
-				<integer>22</integer>
+				<integer>6</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-		</dict>
-		<key>lib/top4r/client/base.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>31</integer>
-				<key>line</key>
-				<integer>13</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>24</integer>
-				<key>line</key>
-				<integer>13</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>31</integer>
-				<key>line</key>
-				<integer>13</integer>
-			</dict>
 		</dict>
 		<key>lib/top4r/client/item.rb</key>
 		<dict>
@@ -144,12 +100,12 @@
 				<key>column</key>
 				<integer>3</integer>
 				<key>line</key>
-				<integer>3</integer>
+				<integer>4</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>lib/top4r/client/shipping.rb</key>
 		<dict>
@@ -170,30 +126,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>9</integer>
+				<integer>5</integer>
 				<key>line</key>
-				<integer>22</integer>
+				<integer>20</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>6</integer>
-				<key>line</key>
-				<integer>22</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>10</integer>
-				<key>line</key>
-				<integer>22</integer>
-			</dict>
 		</dict>
 		<key>lib/top4r/client/suite.rb</key>
 		<dict>
@@ -279,7 +219,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>41</integer>
+			<integer>0</integer>
 		</dict>
 		<key>lib/top4r/console.rb</key>
 		<dict>
@@ -323,9 +263,23 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>22</integer>
+			<integer>0</integer>
 		</dict>
 		<key>lib/top4r/ext.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>lib/top4r/ext/stdlib.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -365,7 +319,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>16</integer>
+			<integer>0</integer>
 		</dict>
 		<key>lib/top4r/model.rb</key>
 		<dict>
@@ -379,7 +333,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>55</integer>
+			<integer>0</integer>
 		</dict>
 		<key>lib/top4r/model/item.rb</key>
 		<dict>
@@ -464,8 +418,6 @@
 		<string>lib/top4r/client.rb</string>
 		<string>lib/top4r/model.rb</string>
 		<string>lib/top4r/model/shop.rb</string>
-		<string>README.textile</string>
-		<string>lib/top4r/client/base.rb</string>
 		<string>lib/top4r/config.rb</string>
 		<string>lib/top4r/client/item.rb</string>
 		<string>lib/top4r/client/shipping.rb</string>
@@ -476,6 +428,7 @@
 		<string>lib/top4r/client/user.rb</string>
 		<string>lib/top4r/model/user.rb</string>
 		<string>lib/top4r/logger.rb</string>
+		<string>lib/top4r/ext/stdlib.rb</string>
 		<string>lib/top4r/ext.rb</string>
 		<string>lib/top4r/core.rb</string>
 		<string>config/templates/github.gemspec.erb</string>
@@ -484,6 +437,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{296, 0}, {975, 778}}</string>
+	<string>{{305, 0}, {975, 778}}</string>
 </dict>
 </plist>
