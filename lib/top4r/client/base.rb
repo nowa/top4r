@@ -76,21 +76,24 @@ class Top4R::Client
       
       map = JSON.parse(response.body)
       # API 1.0
-      if map["error_rsp"].is_a?(Hash) and map["error_rsp"]["code"].to_s == "630"
+      if !map["error_response"].blank? and map["error_response"]["code"].to_s == "27"
+        @@logger.info "Login session expired."
+        raise Top4R::LoginRequiredError.new
+      elsif map["error_rsp"].is_a?(Hash) and map["error_rsp"]["code"].to_s == "630"
         @@logger.info "Raising SuiteNotOrderedError..."
         raise Top4R::SuiteNotOrderedError.new(:code => map["error_rsp"]["code"],
                                       :message => map["error_rsp"]["msg"],
                                       :error => map["error_rsp"],
                                       :uri => uri)
       elsif map["error_rsp"].is_a?(Hash)
-        @@logger.info "Raising RESTError..."
+        @@logger.info "Raising RESTError [error_rsp not hash]..."
         raise Top4R::RESTError.new(:code => map["error_rsp"]["code"],
                                     :message => map["error_rsp"]["msg"],
                                     :error => map["error_rsp"],
                                     :uri => uri)
       # API 2.0
       elsif map["error_response"].is_a?(Hash)
-        @@logger.info "Raising RESTError..."
+        @@logger.info "Raising RESTError [error_response not hash]..."
         raise Top4R::RESTError.new(:code => map["error_response"]["code"],
                                     :message => map["error_response"]["msg"],
                                     :sub_code => map["error_response"]["sub_code"], 

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>lib/top4r/client/item.rb</string>
+	<string>lib/top4r/client.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -84,28 +84,58 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>31</integer>
-				<key>line</key>
 				<integer>6</integer>
+				<key>line</key>
+				<integer>18</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>lib/top4r/client/base.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>13</integer>
+				<key>line</key>
+				<integer>23</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>47</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>8</integer>
+				<key>line</key>
+				<integer>23</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>13</integer>
+				<key>line</key>
+				<integer>23</integer>
+			</dict>
+		</dict>
 		<key>lib/top4r/client/item.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>3</integer>
+				<integer>7</integer>
 				<key>line</key>
-				<integer>4</integer>
+				<integer>20</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>1</integer>
+			<integer>4</integer>
 		</dict>
 		<key>lib/top4r/client/shipping.rb</key>
 		<dict>
@@ -182,9 +212,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>12</integer>
+				<integer>18</integer>
 				<key>line</key>
-				<integer>11</integer>
+				<integer>2</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
@@ -195,16 +225,16 @@
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>4</integer>
+				<integer>14</integer>
 				<key>line</key>
-				<integer>11</integer>
+				<integer>2</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>16</integer>
+				<integer>20</integer>
 				<key>line</key>
-				<integer>11</integer>
+				<integer>2</integer>
 			</dict>
 		</dict>
 		<key>lib/top4r/config.rb</key>
@@ -263,7 +293,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>22</integer>
 		</dict>
 		<key>lib/top4r/ext.rb</key>
 		<dict>
@@ -416,6 +446,7 @@
 		<string>lib/top4r/console.rb</string>
 		<string>lib/top4r/model/item.rb</string>
 		<string>lib/top4r/client.rb</string>
+		<string>lib/top4r/client/base.rb</string>
 		<string>lib/top4r/model.rb</string>
 		<string>lib/top4r/model/shop.rb</string>
 		<string>lib/top4r/config.rb</string>
@@ -437,6 +468,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{305, 0}, {975, 778}}</string>
+	<string>{{499, -30}, {975, 778}}</string>
 </dict>
 </plist>
