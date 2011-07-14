@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>lib/top4r/client/base.rb</string>
+	<string>lib/top4r/client/item.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -68,28 +68,28 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>10</integer>
+				<integer>7</integer>
 				<key>line</key>
-				<integer>78</integer>
+				<integer>69</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>66</integer>
+			<integer>53</integer>
 		</dict>
 		<key>lib/top4r/client/item.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>7</integer>
+				<integer>27</integer>
 				<key>line</key>
-				<integer>20</integer>
+				<integer>48</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>4</integer>
+			<integer>33</integer>
 		</dict>
 		<key>lib/top4r/client/shipping.rb</key>
 		<dict>
@@ -289,6 +289,36 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>lib/top4r/model/item.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>16</integer>
+				<key>line</key>
+				<integer>67</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>57</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>11</integer>
+				<key>line</key>
+				<integer>67</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>21</integer>
+				<key>line</key>
+				<integer>67</integer>
+			</dict>
+		</dict>
 		<key>lib/top4r/model/user.rb</key>
 		<dict>
 			<key>caret</key>
@@ -341,6 +371,7 @@
 		<string>lib/top4r/client/base.rb</string>
 		<string>lib/top4r/model.rb</string>
 		<string>lib/top4r/client/item.rb</string>
+		<string>lib/top4r/model/item.rb</string>
 		<string>lib/top4r/client/shipping.rb</string>
 		<string>lib/top4r/client/shop.rb</string>
 		<string>lib/top4r/client/suite.rb</string>

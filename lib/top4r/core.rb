@@ -60,4 +60,13 @@ module Top4R
       "#{@method} method at model #{@model} requires you to be logged in first"
     end
   end # LoginRequiredError
+  class ShopNotExistError < RESTError
+    include ClassUtilMixin
+    @@ATTRIBUTES = [:model, :method]
+    attr_accessor *@@ATTRIBUTES
+    
+    def to_s
+      "#{@method} method at model #{@model} 错误,错误代号#{@code}，用户没有开通店铺！"
+    end
+  end # ShopNotExistError
 end

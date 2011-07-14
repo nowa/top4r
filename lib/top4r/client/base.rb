@@ -70,15 +70,20 @@ class Top4R::Client
     end
   
     def handle_rest_response(response, uri = nil)
-      unless response.is_a?(Net::HTTPSuccess)
+      if !response.is_a?(Net::HTTPSuccess)
         raise_rest_error(response, uri)
       end
-      
+
       map = JSON.parse(response.body)
+
       # API 1.0
       if !map["error_response"].blank? and map["error_response"]["code"].to_s == "27"
+        puts "-------- #{map.inspect} ------------"
         @@logger.info "Login session expired."
         raise Top4R::LoginRequiredError.new
+      elsif !map["error_response"].blank? and map["error_response"]["code"].to_s == "560"
+         @@logger.info "Shop not exist."
+          raise Top4R::ShopNotExistError.new(:code => map["error_response"]["code"])
       elsif map["error_rsp"].is_a?(Hash) and map["error_rsp"]["code"].to_s == "630"
         @@logger.info "Raising SuiteNotOrderedError..."
         raise Top4R::SuiteNotOrderedError.new(:code => map["error_rsp"]["code"],

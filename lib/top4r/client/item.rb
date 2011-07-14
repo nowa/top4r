@@ -46,6 +46,7 @@ class Top4R::Client
   # 参数:
   # ids  商品数字id列表，多个num_iid用逗号隔开，一次不超过20个。 如:123456,223456
   def items_list(ids, options = {})
+    return [] if ids.blank?
     method = :items_list
     valid_method(method, @@ITEM_METHODS, :item)
     options = {:num_iids => ids}.merge(options)
