@@ -6,6 +6,8 @@ module Top4R
     end
     
     module InstanceMethods
+      attr_accessor :raw
+      
       def initialize(params = {})
         others = {}
         params.each do |key,val|
@@ -15,6 +17,7 @@ module Top4R
             others[key] = val
           end
         end
+        self.send("raw=",params)
         self.send("#{:other_attrs}=", others) if self.respond_to? :other_attrs and others.size > 0
         self.send(:init) if self.respond_to? :init
       end
