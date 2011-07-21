@@ -67,11 +67,11 @@ class Top4R::Client
   # 根据id列表获取单个宝贝
   # 参数:
   # id  商品数字id
-  def item(id)
+  def item(id, options = {})
     method = :item
     valid_method(method, @@ITEM_METHODS, :item)
-    options = {:num_iid => id}.merge({})
-    params = {:fields => Top4R::Item.fields}.merge(options)
+    options = {:num_iid => id}
+    params = {:fields => (options[:fields] || Top4R::Item.fields)}.merge(options)
     response = http_connect {|conn| create_http_get_request(@@ITEM_METHODS[method], params)}
     result = JSON.parse(response.body)[rsp(@@ITEM_METHODS[method])]
     if result.is_a?(Hash) and result['item']
