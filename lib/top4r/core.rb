@@ -6,6 +6,8 @@ module Top4R
     end
     
     module InstanceMethods
+      attr_accessor :raw
+      
       def initialize(params = {})
         others = {}
         params.each do |key,val|
@@ -15,6 +17,7 @@ module Top4R
             others[key] = val
           end
         end
+        self.send("raw=",params)
         self.send("#{:other_attrs}=", others) if self.respond_to? :other_attrs and others.size > 0
         self.send(:init) if self.respond_to? :init
       end
@@ -60,4 +63,13 @@ module Top4R
       "#{@method} method at model #{@model} requires you to be logged in first"
     end
   end # LoginRequiredError
+  class ShopNotExistError < RESTError
+    include ClassUtilMixin
+    @@ATTRIBUTES = [:model, :method]
+    attr_accessor *@@ATTRIBUTES
+    
+    def to_s
+      "#{@method} method at model #{@model} 错误,错误代号#{@code}，用户没有开通店铺！"
+    end
+  end # ShopNotExistError
 end

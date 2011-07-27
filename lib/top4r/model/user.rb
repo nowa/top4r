@@ -76,7 +76,7 @@ module Top4R
 
       def default_public_fields
         ["user_id", "nick", "sex", "buyer_credit", "seller_credit", 
-          "location.city", "location.state", "location.country", "created", "last_visit", "type"]
+          "location.city", "location.state", "email", "location.country", "created", "last_visit", "type"]
       end
 
       def default_private_fields

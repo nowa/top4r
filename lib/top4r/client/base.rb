@@ -5,7 +5,7 @@ class Top4R::Client
   
   def inspect
     s = old_inspect
-    s.gsub!(/@app_secret=".*?"/, '@app_secret="XXXX"')
+    s.gsub!(/@app_secret=".*?"/, '@app_secret="******"')
   end
   
   def init
@@ -70,27 +70,35 @@ class Top4R::Client
     end
   
     def handle_rest_response(response, uri = nil)
-      unless response.is_a?(Net::HTTPSuccess)
+      if !response.is_a?(Net::HTTPSuccess)
         raise_rest_error(response, uri)
       end
-      
+
       map = JSON.parse(response.body)
+
       # API 1.0
-      if map["error_rsp"].is_a?(Hash) and map["error_rsp"]["code"].to_s == "630"
+      if !map["error_response"].blank? and map["error_response"]["code"].to_s == "27"
+        puts "-------- #{map.inspect} ------------"
+        @@logger.info "Login session expired."
+        raise Top4R::LoginRequiredError.new
+      elsif !map["error_response"].blank? and map["error_response"]["code"].to_s == "560"
+         @@logger.info "Shop not exist."
+          raise Top4R::ShopNotExistError.new(:code => map["error_response"]["code"])
+      elsif map["error_rsp"].is_a?(Hash) and map["error_rsp"]["code"].to_s == "630"
         @@logger.info "Raising SuiteNotOrderedError..."
         raise Top4R::SuiteNotOrderedError.new(:code => map["error_rsp"]["code"],
                                       :message => map["error_rsp"]["msg"],
                                       :error => map["error_rsp"],
                                       :uri => uri)
       elsif map["error_rsp"].is_a?(Hash)
-        @@logger.info "Raising RESTError..."
+        @@logger.info "Raising RESTError [error_rsp not hash]..."
         raise Top4R::RESTError.new(:code => map["error_rsp"]["code"],
                                     :message => map["error_rsp"]["msg"],
                                     :error => map["error_rsp"],
                                     :uri => uri)
       # API 2.0
       elsif map["error_response"].is_a?(Hash)
-        @@logger.info "Raising RESTError..."
+        @@logger.info "Raising RESTError [error_response not hash]..."
         raise Top4R::RESTError.new(:code => map["error_response"]["code"],
                                     :message => map["error_response"]["msg"],
                                     :sub_code => map["error_response"]["sub_code"], 
@@ -128,12 +136,13 @@ class Top4R::Client
     end
     
     def append_top_params(params)
-      params = params.merge({
-        :session => @session,
-        :timestamp => Time.now.strftime("%Y-%m-%d %H:%M:%S"),
+      params = params.merge({:timestamp => Time.now.strftime("%Y-%m-%d %H:%M:%S"),
         :format => "#{@@config.format}",
         :app_key => @app_key
       })
+      if !@session.blank?
+        params = params.merge({ :session => @session })
+      end
       params[:v] = "2.0" unless params[:v]
       params = params.merge({
         :sign => Digest::MD5.hexdigest(params.sort {|a,b| "#{a[0]}"<=>"#{b[0]}"}.flatten.unshift(@app_secret).join).upcase
