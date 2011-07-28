@@ -75,7 +75,7 @@ module Top4R
     end
     
     def unmarshal_other_attrs
-      @id = @iid
+      @id = @num_iid
       if @location && @location.size > 0
         @location = Location.new(@location)
       else
