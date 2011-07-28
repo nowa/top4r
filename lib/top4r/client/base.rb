@@ -78,7 +78,7 @@ class Top4R::Client
 
       # API 1.0
       if !map["error_response"].blank? and map["error_response"]["code"].to_s == "27"
-        puts "-------- #{map.inspect} ------------"
+        puts "[Top4R]--#{map.inspect}"
         @@logger.info "Login session expired."
         raise Top4R::LoginRequiredError.new
       elsif !map["error_response"].blank? and map["error_response"]["code"].to_s == "560"
