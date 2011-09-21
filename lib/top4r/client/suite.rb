@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Top4R::Client
   @@SUITE_METHODS = {
     :list => 'taobao.suites.get',

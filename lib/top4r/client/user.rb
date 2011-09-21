@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Top4R::Client
   @@USER_METHODS = {
     :info => 'taobao.user.get',

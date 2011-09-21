@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Top4R
   module LoggedInUserMixin
     module InstanceMethods

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Top4R::Version
   MAJOR = 0
   MINOR = 1

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Extension to Hash to create URL encoded string from key-values
 class Hash
   # Returns string formatted for HTTP URL encoded name-value pairs.

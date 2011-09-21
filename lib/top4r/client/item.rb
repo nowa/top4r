@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Top4R::Client
   @@ITEM_METHODS = {
     :onsale_list => 'taobao.items.onsale.get'

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # meta.rb contains <tt>Top4R::Meta</tt> and related classes that
 # help define the metadata of the <tt>Top4R</tt> project.
 

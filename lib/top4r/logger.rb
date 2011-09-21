@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Top4R::Logger
   attr_accessor :trace
   

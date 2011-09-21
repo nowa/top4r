@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Top4R::Client
   alias :old_inspect :inspect
   attr_accessor :total_results
