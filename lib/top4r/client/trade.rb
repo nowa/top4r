@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Top4R::Client
   @@TRADE_METHODS = {
     :bought_list => 'taobao.trades.bought.get',

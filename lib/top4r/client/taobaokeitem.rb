@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Top4R::Client
   @@TAOBAOKEITEM_METHODS = {
     :taobaoke_items_get => 'taobao.taobaoke.items.get'

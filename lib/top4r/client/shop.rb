@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Top4R::Client
   @@SHOP_METHODS = {
     :cats_list => 'taobao.sellercats.list.get',
