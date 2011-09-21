@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'optparse'
 
 module Top4R

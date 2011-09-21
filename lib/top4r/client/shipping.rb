@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Top4R::Client
   @@AREA_METHODS = {
     :list => 'taobao.areas.get'

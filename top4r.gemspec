@@ -3,8 +3,7 @@ Gem::Specification.new do |s|
   s.name = "top4r"
   s.version = "0.1.4"
   s.platform = Gem::Platform::RUBY
-  s.has_rdoc = true
-  s.extra_rdoc_files = ["README","CHANGES","TODO","MIT-LICENSE",]
+  s.extra_rdoc_files = ["README.textile","CHANGES","TODO","MIT-LICENSE",]
   s.summary = "TOP4R is a library that can help you build plugin for TaoBao.com quickly in pure Ruby."
   s.author = "Nowa Zhu"
   s.email = "nowazhu@gmail.com"
