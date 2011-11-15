@@ -1,7 +1,7 @@
-# Generated: 2011-09-21 02:36:29 UTC
+# Generated: Tue Nov 15 13:19:30 UTC 2011
 Gem::Specification.new do |s|
   s.name = "top4r"
-  s.version = "0.1.5"
+  s.version = "0.1.6"
   s.platform = Gem::Platform::RUBY
   s.has_rdoc = true
   s.extra_rdoc_files = ["README","CHANGES","TODO","MIT-LICENSE",]
