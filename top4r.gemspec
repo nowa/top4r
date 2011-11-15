@@ -1,7 +1,7 @@
-# Generated: Tue Sep 28 09:05:01 UTC 2010
+# Generated: 2011-09-21 02:36:29 UTC
 Gem::Specification.new do |s|
   s.name = "top4r"
-  s.version = "0.1.4"
+  s.version = "0.1.5"
   s.platform = Gem::Platform::RUBY
   s.extra_rdoc_files = ["README.textile","CHANGES","TODO","MIT-LICENSE",]
   s.summary = "TOP4R is a library that can help you build plugin for TaoBao.com quickly in pure Ruby."

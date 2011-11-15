@@ -64,6 +64,7 @@ module Top4R
       "#{@method} method at model #{@model} requires you to be logged in first"
     end
   end # LoginRequiredError
+
   class ShopNotExistError < RESTError
     include ClassUtilMixin
     @@ATTRIBUTES = [:model, :method]

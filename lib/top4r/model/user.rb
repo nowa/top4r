@@ -66,7 +66,7 @@ module Top4R
   # User Model
   class User
     include ModelMixin
-    @@ATTRIBUTES = [:id, :user_id, :nick, :sex, :buyer_credit, :seller_credit, :location, 
+    @@ATTRIBUTES = [:id, :user_id, :nick, :sex, :avatar, :buyer_credit, :seller_credit, :location, 
       :created, :last_visit, :birthday, :type, :has_more_pic, :item_img_num, :item_img_size, 
       :prop_img_num, :prop_img_size, :auto_repost, :promoted_type, :status, :alipay_bind, 
       :consumer_protection, :alipay_account, :alipay_no, :email, :magazine_subscribe, :vertical_market]
@@ -81,7 +81,7 @@ module Top4R
       end
 
       def default_private_fields
-        ["location.zip", "birthday"]
+        ["location.zip", "birthday", "avatar", "email"]
       end
 
       def find(u, client)
@@ -98,7 +98,7 @@ module Top4R
     end
 
     def is_me?
-      @nick == @client.instance_eval("@parameters['visitor_nick']").to_utf8
+      @nick == @client.instance_eval("@parameters['visitor_nick']")
     end
 
     def unmarshal_other_attrs
@@ -110,7 +110,7 @@ module Top4R
       end
       @buyer_credit = UserCredit.new(@buyer_credit) if @buyer_credit && @buyer_credit.size > 0
       @seller_credit = UserCredit.new(@seller_credit) if @seller_credit && @seller_credit.size > 0
-      # @nick = @nick.to_utf8
+      # @nick = @nick
       self
     end
   end # User model
