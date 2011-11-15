@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Top4R::Client
   alias :old_inspect :inspect
-  attr_accessor :total_results
+  attr_accessor :total_results, :parameters, :session
   attr_reader :login
   
   def inspect
@@ -14,13 +14,12 @@ class Top4R::Client
     @@logger = Top4R::Logger.new(@@config.logger, @@config.trace)
     if @parameters and @session
       @parameters = Base64.decode64(@parameters).split('&').inject({}) do |hsh, i| kv = i.split('='); hsh[kv[0]] = kv[1]; hsh end
-      @login = user(@parameters['visitor_nick'].to_utf8)
-      # puts "login: #{@login.inspect}"
+      @login = user(@parameters['visitor_nick'])
     end
   end
   
   protected
-    attr_accessor :app_key, :app_secret, :parameters, :session
+    attr_accessor :app_key, :app_secret
     
     def login_required(model, method)
       return if logged_in?

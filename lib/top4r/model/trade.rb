@@ -60,7 +60,7 @@ module Top4R
   class Trade
     include ModelMixin
     @@ATTRIBUTES = [:id, :seller_nick, :buyer_nick, :title, :type, :created, :iid, :price, 
-      :pic_path, :num, :tid, :buyer_message, :shipping_type, :alipay_no, :payment, 
+      :pic_path, :num, :tid, :buyer_message, :shipping_type, :alipay_no, :payment, :sid, 
       :discount_fee, :adjust_fee, :snapshot_url, :snapshot, :status, :seller_rate, :buyer_rate, 
       :buyer_memo, :seller_memo, :trade_memo, :pay_time, :end_time, :modified, :buyer_obtain_point_fee, 
       :point_fee, :real_point_fee, :total_fee, :post_fee, :buyer_alipay_no, :receiver_name,
