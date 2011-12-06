@@ -22,4 +22,20 @@ class Top4R::Client
     end
     items
   end
+  
+  def taobaoke_shops(method = :taobaoke_shops_convert, options = {}, &block)
+    valid_method(method, @@TAOBAOKEITEM_METHODS, :taobaoke_item)
+    params = {:fields => Top4R::TaobaokeItem.fields, :v => "2.0"}.merge(options)
+    response = http_connect {|conn| create_http_get_request(@@TAOBAOKEITEM_METHODS[method], params)}
+    result = JSON.parse(response.body)[rsp(@@TAOBAOKEITEM_METHODS[method])]
+    if result.is_a?(Hash) and result["taobaoke_shops"]
+      items = Top4R::TaobaokeShop.unmarshal(result["taobaoke_shops"]["taobaoke_shop"])
+      items.each {|item| bless_model(item); yield item if block_given?}
+      @total_results = result["total_results"].to_i
+    else
+      @total_results = 0
+      items = []
+    end
+    items
+  end
 end
