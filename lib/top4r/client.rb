@@ -20,7 +20,9 @@ class Top4R::Client
     },
     :item => {},
     :taobaoke_item => {
-      :taobaoke_items_get => 'taobao.taobaoke.items.get'
+      :taobaoke_items_get => 'taobao.taobaoke.items.get', 
+      :taobaoke_items_convert => 'taobao.taobaoke.items.convert', 
+      :taobaoke_shops_convert => 'taobao.taobaoke.shops.convert'
     }
   }
 end

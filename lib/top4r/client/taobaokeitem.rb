@@ -1,7 +1,9 @@
 # -*- encoding : utf-8 -*-
 class Top4R::Client
   @@TAOBAOKEITEM_METHODS = {
-    :taobaoke_items_get => 'taobao.taobaoke.items.get'
+    :taobaoke_items_get => 'taobao.taobaoke.items.get', 
+    :taobaoke_items_convert => 'taobao.taobaoke.items.convert', 
+    :taobaoke_shops_convert => 'taobao.taobaoke.shops.convert'
   }
   
   def taobaoke_items(q = nil, method = :taobaoke_items_get, options = {}, &block)
