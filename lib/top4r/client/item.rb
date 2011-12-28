@@ -1,7 +1,11 @@
 # -*- encoding : utf-8 -*-
 class Top4R::Client
   @@ITEM_METHODS = {
-    :onsale_list => 'taobao.items.onsale.get'
+    :onsale_list => 'taobao.items.onsale.get', 
+    :item_info => 'taobao.item.get', 
+    :items_info => 'taobao.items.list.get', 
+    :item_skus => 'taobao.item.skus.get', 
+    :search => 'taobao.items.get'
   }
   
   def items_onsale(q = nil, method = :onsale_list, options = {}, &block)
@@ -19,5 +23,15 @@ class Top4R::Client
       items = []
     end
     items
+  end
+  
+  def item_info(iid = nil, options = {}, &block)
+    method = :item_info
+    valid_method(method， @@ITEM_METHODS, :item)
+    options = {:iid => iid}.merge(options) if iid
+    params = {:fields => Top4R::Item.fields}.merge(options)
+    response = http_connect {|conn| create_http_get_request(@@ITEM_METHODS[method], params)}
+    item = Top4R::Item.unmarshal(JSON.parse(response.body)[rsp(@@SHOP_METHODS[method])]["item"])
+    bless_model(item)
   end
 end
