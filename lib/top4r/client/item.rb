@@ -27,7 +27,7 @@ class Top4R::Client
   
   def item_info(iid = nil, options = {}, &block)
     method = :item_info
-    valid_method(method， @@ITEM_METHODS, :item)
+    valid_method(method, @@ITEM_METHODS, :item)
     options = {:iid => iid}.merge(options) if iid
     params = {:fields => Top4R::Item.fields}.merge(options)
     response = http_connect {|conn| create_http_get_request(@@ITEM_METHODS[method], params)}
