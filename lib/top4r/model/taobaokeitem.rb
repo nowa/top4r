@@ -53,7 +53,7 @@ module Top4R
       def attributes; @@ATTRIBUTES; end
       
       def default_public_fields
-        ["item.title", "item.num_iid", "item.pic_url", "item.price", "item.nick", "item.item_imgs", :click_url, :shop_click_url, :seller_credit_score]
+        [:title, :num_iid, :cid, :pic_url, :price, :nick, :item_imgs, :desc, :click_url, :shop_click_url, :seller_credit_score]
       end
     end
   end

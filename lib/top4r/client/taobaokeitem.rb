@@ -28,7 +28,7 @@ class Top4R::Client
     method = :taobaoke_items_detail_get
     valid_method(method, @@TAOBAOKEITEM_METHODS, :taobaoke_item)
     options = {:num_iids => num_iids.join(',')}.merge(options) if num_iids
-    params = {:fields => Top4R::TaobaokeItem.fields, :v => "2.0"}.merge(options)
+    params = {:fields => Top4R::TaobaokeItemDetail.fields, :v => "2.0"}.merge(options)
     response = http_connect {|conn| create_http_get_request(@@TAOBAOKEITEM_METHODS[method], params)}
     result = JSON.parse(response.body)[rsp(@@TAOBAOKEITEM_METHODS[method])]
     if result.is_a?(Hash) and result["taobaoke_item_details"]

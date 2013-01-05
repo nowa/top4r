@@ -29,6 +29,9 @@ class Top4R::Client
       :taobaoke_items_detail_get => 'taobao.taobaoke.items.detail.get', 
       :taobaoke_items_convert => 'taobao.taobaoke.items.convert', 
       :taobaoke_shops_convert => 'taobao.taobaoke.shops.convert'
+    },
+    :item_cat => {
+      :cats_info => 'taobao.itemcats.get'
     }
   }
 end
@@ -41,3 +44,4 @@ require 'top4r/client/suite'
 require 'top4r/client/item'
 require 'top4r/client/shop'
 require 'top4r/client/taobaokeitem'
+require 'top4r/client/itemcat'
