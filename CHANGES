@@ -1,3 +1,8 @@
+=== 0.2.2 / 2013-01-09
+
+Add: taobao.items.list.get 的支持
+Fix: 当不需要session的时候还带有空session参数导致出错的bug
+
 === 0.2.1 / 2013-01-05
 
 Add: taobao.itemcats.get 的支持

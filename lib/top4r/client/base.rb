@@ -129,11 +129,14 @@ class Top4R::Client
     
     def append_top_params(params)
       params = params.merge({
-        :session => @session,
+        # :session => @session,
         :timestamp => Time.now.strftime("%Y-%m-%d %H:%M:%S"),
         :format => "#{@@config.format}",
         :app_key => @app_key
       })
+      if !@session.nil? and !@session.blank?
+        params[:session] = @session
+      end
       params[:v] = "2.0" unless params[:v]
       params = params.merge({
         :sign => Digest::MD5.hexdigest(params.sort {|a,b| "#{a[0]}"<=>"#{b[0]}"}.flatten.unshift(@app_secret).join).upcase

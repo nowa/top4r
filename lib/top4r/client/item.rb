@@ -31,7 +31,26 @@ class Top4R::Client
     options = {:num_iid => iid}.merge(options) if iid
     params = {:fields => Top4R::Item.fields}.merge(options)
     response = http_connect {|conn| create_http_get_request(@@ITEM_METHODS[method], params)}
-    item = Top4R::Item.unmarshal(JSON.parse(response.body)[rsp(@@SHOP_METHODS[method])]["item"])
+    item = Top4R::Item.unmarshal(JSON.parse(response.body)[rsp(@@ITEM_METHODS[method])]["item"])
     bless_model(item)
+  end
+
+  def items_info(iid = nil, options = {}, &block)
+    method = :items_info
+    valid_method(method, @@ITEM_METHODS, :item)
+    iid = [iid] if !iid.is_a?(Array)
+    options = {:num_iids => iid}.merge(options) if iid
+    params = {:fields => Top4R::Item.fields}.merge(options)
+    response = http_connect {|conn| create_http_get_request(@@ITEM_METHODS[method], params)}
+    result = JSON.parse(response.body)[rsp(@@ITEM_METHODS[method])]
+    if result.is_a?(Hash) and result['items']
+      items = Top4R::Item.unmarshal(result["items"]["item"])
+      items.each {|item| bless_model(item); yield item if block_given?}
+      @total_results = items.size
+    else
+      @total_results = 0
+      items = []
+    end
+    items
   end
 end
