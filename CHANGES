@@ -1,3 +1,26 @@
+=== 0.2.3 / 2013-01-09
+
+Add: taobao.items.inventory.get 获取当前用户的库存商品列表
+Mod: 与master merge，现在开始不再维护bm分支
+
+=== 0.2.2 / 2013-01-09
+
+Add: taobao.items.list.get 的支持
+Fix: 当不需要session的时候还带有空session参数导致出错的bug
+
+=== 0.2.1 / 2013-01-05
+
+Add: taobao.itemcats.get 的支持
+Fix: TaokeItemDetail的public fields出错的bug
+
+=== 0.1.9 / 2011-12-28
+
+Add: taobao.item.get, taobao.items.list.get的支持
+
+=== 0.0.1 / 2011-12-06
+ 
+Add: 淘客商品、店铺转换支持
+
 === 0.0.1 / 2009-06-22
  
 * 1 major enhancement

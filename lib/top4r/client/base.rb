@@ -136,11 +136,12 @@ class Top4R::Client
     end
     
     def append_top_params(params)
-      params = params.merge({:timestamp => Time.now.strftime("%Y-%m-%d %H:%M:%S"),
+      params = params.merge({
+        :timestamp => Time.now.strftime("%Y-%m-%d %H:%M:%S"),
         :format => "#{@@config.format}",
         :app_key => @app_key
       })
-      if !@session.blank?
+      if !@session.nil? and !@session.blank?
         params = params.merge({ :session => @session })
       end
       params[:v] = "2.0" unless params[:v]

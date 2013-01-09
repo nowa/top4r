@@ -1,6 +1,27 @@
 # -*- encoding : utf-8 -*-
 module Top4R
   
+  # TaobaokeShop Model
+  class TaobaokeShop
+    include ModelMixin
+    @@ATTRIBUTES = [:user_id, :shop_title, :click_url, :commission_rate, :seller_credit, :shop_type, :total_auction, :auction_count]
+    attr_accessor *@@ATTRIBUTES
+    
+    class << self
+      def attributes; @@ATTRIBUTES; end
+      
+      def default_public_fields
+        ["user_id", "shop_title", "click_url", "commission_rate"]
+      end
+    end
+    
+    def unmarshal_other_attrs
+      @id = @user_id
+      
+      self
+    end
+  end
+  
   # TaobaokeItem Model
   class TaobaokeItem
     include ModelMixin
@@ -20,6 +41,20 @@ module Top4R
       @id = @iid
       
       self
+    end
+  end
+  
+  class TaobaokeItemDetail
+    include ModelMixin
+    @@ATTRIBUTES = [:item, :click_url, :shop_click_url, :seller_credit_score]
+    attr_accessor *@@ATTRIBUTES
+    
+    class << self
+      def attributes; @@ATTRIBUTES; end
+      
+      def default_public_fields
+        [:title, :num_iid, :cid, :pic_url, :price, :nick, :item_imgs, :desc, :click_url, :shop_click_url, :seller_credit_score]
+      end
     end
   end
   

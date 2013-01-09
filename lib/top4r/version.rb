@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 module Top4R::Version
   MAJOR = 0
-  MINOR = 1
-  REVISION = 6
+  MINOR = 2
+  REVISION = 2
   
   class << self
     # Returns X.Y.Z formatted version string

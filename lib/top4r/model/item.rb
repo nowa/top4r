@@ -82,6 +82,9 @@ module Top4R
       else
         @location = nil
       end
+      if @item_imgs && @item_imgs.size > 0
+        @item_imgs.map {|img| ItemImg.new(img)}
+      end
       # if @item_imgs.is_a?(Array) && @item_imgs.size > 0
       #         @item_imgs.map {|img| ItemImg.new(img)}
       #       else
