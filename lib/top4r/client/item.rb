@@ -1,8 +1,5 @@
 # -*- encoding : utf-8 -*-
 class Top4R::Client
-  alias item_info item
-  alias items_info items_list
-
   @@ITEM_METHODS = {
     :inventory_list => 'taobao.items.inventory.get',
     :onsale_list => 'taobao.items.onsale.get', 
@@ -83,4 +80,7 @@ class Top4R::Client
     end
     items
   end
+
+  alias_method :item, :item_info
+  alias_method :items_list, :items_info
 end
