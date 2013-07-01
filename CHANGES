@@ -1,3 +1,6 @@
+=== 0.2.4 / 2013-07-01
+Fix: 解决visitor_nick乱码问题
+
 === 0.2.3 / 2013-01-09
 
 Add: taobao.items.inventory.get 获取当前用户的库存商品列表
