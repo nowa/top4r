@@ -14,7 +14,6 @@ require 'uri'
 require 'cgi'
 require 'json'
 require 'yaml'
-require 'iconv'
 require 'timeout'
 require 'base64'
 

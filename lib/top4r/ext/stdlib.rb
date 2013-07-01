@@ -19,10 +19,18 @@ end
 
 class String
   def to_gbk
-    Iconv.iconv("GBK//IGNORE", "UTF-8//IGNORE", self).to_s
+    if defined?(Iconv)
+      Iconv.iconv("GBK//IGNORE", "UTF-8//IGNORE", self).to_s
+    else
+      encode 'GBK', 'UTF-8'
+    end
   end
   
   def to_utf8
-    Iconv.iconv("UTF-8//IGNORE", "GBK//IGNORE", self).to_s
+    if defined?(Iconv)
+      Iconv.iconv("UTF-8//IGNORE", "GBK//IGNORE", self).to_s
+    else
+      encode 'UTF-8', 'GBK'
+    end
   end
 end
