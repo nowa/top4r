@@ -16,6 +16,7 @@ require 'json'
 require 'yaml'
 require 'timeout'
 require 'base64'
+require 'string/utf8'
 
 require_local('top4r/ext')
 require_local('top4r/version')
