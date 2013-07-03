@@ -13,8 +13,32 @@ class Top4R::Client
     total_results = 0
     @@logger = Top4R::Logger.new(@@config.logger, @@config.trace)
     if @parameters and @session
-      @parameters = Base64.decode64(@parameters).split('&').inject({}) do |hsh, i| kv = i.split('='); hsh[kv[0]] = kv[1]; hsh end
-      @login = user( @parameters['visitor_nick'].utf8! )
+      @parameters = Base64.decode64(@parameters).split('&').inject({}) do |hsh, i| 
+        k, v = i.split('=')
+        hsh[k] = v
+        hsh
+      end
+      @login = user( visitor_nick )
+    end
+  end
+
+  def visitor_nick
+    return @visitor_nick if @visitor_nick
+
+    # TOP returns visitor nick in GBK encoding
+    raw_nick = @parameters['visitor_nick'].utf8!
+
+    if raw_nick =~ /^\[.*\]$/
+      # since TOP may return an array of nicknames
+      # e.g. 
+      #   [vistor1, visitor2]
+      #   [vistor1]
+      #
+      # in this case, we keep the FIRST nickname: 
+      # #=> "vistor1"
+      @visitor_nick == raw_nick[/^\[([^,]+).*\]/, 1]
+    else
+      @visitor_nick == raw_nick
     end
   end
   
