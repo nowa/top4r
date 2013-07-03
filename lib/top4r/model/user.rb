@@ -98,7 +98,7 @@ module Top4R
     end
 
     def is_me?
-      @nick == @client.instance_eval("@parameters['visitor_nick']")
+      @nick == @client.vistor_nick
     end
 
     def unmarshal_other_attrs
